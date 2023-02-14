@@ -1,0 +1,37 @@
+<svg id="arm" height="100vh" width="600vw">
+<g id=arm1>
+     <rect fill="#00FF00" x="300" y="200" width="100" height="20" />
+     <circle id="joint_01" fill="#2255FF" cx="300" cy="210" r="10" />    
+       <g id=arm2>
+       <rect fill="#550011" x="400" y="200" width="100" height="20" />
+       <circle id="joint_02" fill="#8855FF" cx="400" cy="210" r="10" />    
+     </g>
+</g>
+</svg>
+<script>
+  var a1 = document.getElementById('arm1');
+  var j1 =  document.getElementById('joint_01');
+  var a2 = document.getElementById('arm2');
+  var j2 =  document.getElementById('joint_02');
+  var b1 = j1.getBBox();
+  var b2 = j2.getBBox();
+  var j1_cx = b1.x + b1.width/2;
+  var j1_cy = b1.y + b1.height/2;
+  var j2_cx = b2.x + b2.width/2;
+  var j2_cy = b2.y + b2.height/2;
+  var angle_1 = 0;
+  var angle_2 = 0;
+  function rotateArm(){
+  	angle_1+=1;
+  	a1.setAttribute("transform","rotate("+angle_1+","+j1_cx+","+j1_cy+")");
+  	requestAnimationFrame(rotateArm);
+  }
+  requestAnimationFrame(rotateArm);
+  
+  function rotateArm2(){
+  	angle_2+=-1;
+    a2.setAttribute("transform","rotate("+angle_2+","+j2_cx+","+j2_cy+")");
+  	requestAnimationFrame(rotateArm2);
+  }
+  requestAnimationFrame(rotateArm2);
+</script>
